@@ -1,0 +1,50 @@
+%% Voltage magnitude
+
+bus = 1:7;
+
+V_base       = [1.00 0.976 0.977 0.986 0.987 0.990 1.00];
+V_redispatch = [1.00 0.992 0.992 0.994 0.993 0.995 1.00];
+V_vset       = [1.05 1.029 1.030 1.039 1.039 1.042 1.05];
+V_reactor    = [1.00 0.943 0.940 0.936 0.941 0.950 1.00];
+V_cap        = [1.00 1.006 1.011 1.031 1.02 0.993 1.00];
+
+figure
+
+plot(bus,V_base,'-o','Color','g','LineWidth',2,'MarkerSize',7)
+hold on
+plot(bus,V_redispatch,'--o','Color',[0.8500 0.3250 0.0980],'LineWidth',1.5,'MarkerSize',7)
+plot(bus,V_vset,'-o','Color','r','LineWidth',1.5,'MarkerSize',7)
+plot(bus,V_reactor,'-o','LineWidth',1.5,'MarkerSize',7)
+plot(bus,V_cap,'-o','Color','b','LineWidth',1.5,'MarkerSize',7)
+
+yline(0.95,'--')
+yline(1.05,'--')
+
+xlabel('Bus Number')
+ylabel('Voltage Magnitude (p.u.)')
+legend('Base','Redispatch','V-set','Reactor','Capacitor','Location','best')
+
+grid on
+ylim([0.88 1.06])
+
+exportgraphics(gcf,'voltage_profile.pdf','ContentType','vector')
+%% Plotting Generator Loading
+% X-axis labels
+generators = [1 7]; 
+
+% Rows represent generators, Columns represent scenarios
+% Each row corresponds to a generator in the 'generators' vector
+data = [
+    90.68, 98.81, 89.35, 116.97, 74.82;  % Generator 1 loadings
+    102.98, 98.37, 101.87, 129.87, 90.70 % Generator 7 loadings
+];
+
+figure
+bar(generators, data)
+
+% Formatting
+xlabel('Generator Number')
+ylabel('Generator Loading (%)')
+legend('Base', 'Redispatch', 'V-set', 'Capacitor', 'Reactor', 'Location', 'northeastoutside')
+grid on
+title('Generator Loading Comparison by Scenario')

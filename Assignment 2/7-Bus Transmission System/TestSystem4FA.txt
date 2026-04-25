@@ -1,0 +1,31 @@
+//BEGIN MVA SYSTEM BASE DATA
+    100 
+//BEGIN BUS DATA,(BUS_NR, LABEL, Voltage magnitude[pu], Voltage angle [degree], BUSCODE [1: PQ, 2: PV, 3: ref] V_rated [kV)], V_min [pu], V_max [pu])
+     1, 'GenBUS1LV', 1.00 , 0.00 , 3, 13.8000,  0.95 , 1.05
+     2, 'BUS2MV', 1.00 , 0.00 , 1, 230.0000,  0.95 , 1.05
+     3, 'BUS3MV', 1.00 , 0.00 , 1, 230.0000,  0.95 , 1.05
+     4, 'BUS4MV', 1.00 , 0.00 , 1,  230.0000,  0.95 , 1.05
+     5, 'BUS5MV', 1.00 , 0.00 , 1,  230.0000,  0.95 , 1.05
+     6, 'BUS6MV', 1.00 , 0.00 , 1,  230.0000,  0.95 , 1.05
+     7, 'GenBUS7LV', 1.00 , 0.00 , 2,  15.0000,  0.95 , 1.05
+//BEGIN LOAD DATA (BUS_NR, P_load MW, Q_load MVAR)   //Add the shunts here...  
+     2,    50.0,     30.0
+     3,    50.0,     30.0  
+     4,    50.0,     30.0  
+     5,    50.0,     30.0
+     6,    50.0,     30.0   
+//BEGIN GENERATOR DATA (BUS_NR, MVA_SIZE, P_GEN [MW], P_max [MW], Q_max [MVAr], Q_min [MVAr], X, X2, X0, Xn, GRND) 
+// GRND: 1=grounded; 0:ungrounded; admittances on generator base  
+     1,    100.000,    100.000 , 100 , 43.5 , -43.5 , 0.12 , 0.14 , 0.05 , 0.03 , 1
+     7,    200.000,   200.000 , 200 , 87 , -87 , 0.12 , 0.14 , 0.05 , 0.03 , 1
+//BEGIN LINE DATA (FROM_BUS, TO_BUS, ID, R, X, B, MVA_rating, X2, X0) 
+// All branch impedances and admittances (lines and transformers) on system base	
+     2,     3, 'a', 0.002268, 0.014178,   0.026186  , 200  , 0.014178 , 0.04252
+     3,     4, 'b', 0.006352, 0.039698,   0.073319  , 200 , 0.039698 , 0.11910
+     4,     6, 'c', 0.006049, 0.037807,   0.069828  , 200 , 0.037807 , 0.11342 
+     4,     5, 'd', 0.002268, 0.014178,   0.026186   , 200 , 0.014178 , 0.04252
+     5,     6, 'e', 0.00756, 0.04726,   0.08728  , 200 , 0.04726 , 0.14178 
+//BEGIN TRANSFORMER DATA (FROM_BUS, TO_BUS, ID, R, X, n, ANG1, MVA_rating, FROM_CON, TO_CON, X2, X0)	
+//Transformer connection: (FROM_CON, TO_CON): 1=Y, 2=Yg, 3=D
+     1, 2, '1 ', 0.00, 0.05, 1.00000, 0.000, 100, 3, 2, 0.05, 0.05 
+     7, 6, '1 ', 0.00, 0.05, 1.00000, 0.000, 100, 3, 2, 0.05, 0.05   

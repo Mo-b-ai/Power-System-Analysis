@@ -1,0 +1,5 @@
+Exercises/
+Python Scripts/
+.vscode/
+**/__pycache__/
+*.pyc
