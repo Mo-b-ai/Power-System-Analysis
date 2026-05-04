@@ -10,7 +10,7 @@ max_iter = 30   # Iteration settings
 err_tol = 1e-3
 # Load the Network data ...
 base_dir = Path(__file__).resolve().parent
-filename = base_dir / "Network_Data" / "Nordic32_SA.txt"
+filename = base_dir / "Network_Data" / "BaseCase+Line2-4.txt"
 
 lnd.LoadNetworkData(filename) # makes Ybus available as lnd.Ybus etc.
 
