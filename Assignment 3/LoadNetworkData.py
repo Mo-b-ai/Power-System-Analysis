@@ -5,7 +5,7 @@ import ReadNetworkData as rd
 def LoadNetworkData(filename):
     global Ybus, Sbus, V0, buscode, ref, pq_index, pv_index, Y_fr, Y_to, br_f,br_t,br_v_ind,br_Y,S_LD,  \
            ind_to_bus, bus_to_ind, MVA_base, bus_labels, br_MVA, Gen_MVA, br_id, br_Ymat, bus_kv, \
-           p_gen_max, q_gen_min, q_gen_max, v_min, v_max
+           p_gen_max, q_gen_min, q_gen_max, v_min, v_max, n_lines
     #read in the data from the file...
     bus_data,load_data,gen_data,line_data, tran_data,mva_base, bus_to_ind, ind_to_bus = \
     rd.read_network_data_from_file(filename)
@@ -14,11 +14,12 @@ def LoadNetworkData(filename):
     # Construct the Ybus matrix from elements in the line_data and trans_data
     # Construct the branch admittance matrices Y_fr and Y_to
     ##########################################################################
-    MVA_base = mva_base   
+    MVA_base = mva_base
     N = len(bus_data) #Number of buses
     M_lines = len(line_data)
     M_trans = len(tran_data)
     M_branches = M_lines + M_trans
+    n_lines = M_lines  # number of transmission lines (excludes transformers)
     Ybus = np.zeros((N,N),dtype=complex)
     Gen_MVA = np.zeros(N) #keep track of generators MVA size  (bus indices used)
     p_gen_max = np.zeros(N)
